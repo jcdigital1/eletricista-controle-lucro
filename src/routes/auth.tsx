@@ -2,10 +2,9 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import { lovable } from "@/integrations/lovable/index";
 import { Logo } from "@/components/Logo";
 import { Field, TextInput } from "@/components/Field";
-import { GhostButton, GoldButton } from "@/components/Cards";
+import { GoldButton } from "@/components/Cards";
 
 export const Route = createFileRoute("/auth")({
   ssr: false,
@@ -58,8 +57,8 @@ function AuthPage() {
           options: { emailRedirectTo: window.location.origin },
         });
         if (error) throw error;
-        toast.success("Conta criada! Você já pode entrar.");
-        setMode("login");
+        toast.success("Conta criada! Bem-vindo.");
+        navigate({ to: "/" });
       } else {
         const { error } = await supabase.auth.signInWithPassword({
           email: email.trim(),
@@ -75,18 +74,6 @@ function AuthPage() {
     } finally {
       setLoading(false);
     }
-  }
-
-  async function google() {
-    const result = await lovable.auth.signInWithOAuth("google", {
-      redirect_uri: window.location.origin,
-    });
-    if (result.error) {
-      toast.error("Não foi possível entrar com o Google");
-      return;
-    }
-    if (result.redirected) return;
-    navigate({ to: "/" });
   }
 
   async function forgot() {
@@ -154,10 +141,6 @@ function AuthPage() {
           <GoldButton type="submit" disabled={loading}>
             {loading ? "Aguarde..." : mode === "login" ? "Entrar" : "Criar conta"}
           </GoldButton>
-
-          <GhostButton type="button" onClick={google}>
-            Entrar com Google
-          </GhostButton>
 
           <div className="flex items-center justify-between pt-1 text-sm">
             <button
