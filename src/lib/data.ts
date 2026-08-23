@@ -124,13 +124,15 @@ export function useSaveRow<T extends Record<string, unknown>>(
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async ({ id, values }: { id?: string; values: T }) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const client = supabase.from(table) as any;
       if (id) {
-        const { error } = await supabase.from(table).update(values).eq("id", id);
+        const { error } = await client.update(values).eq("id", id);
         if (error) throw error;
         return;
       }
       const user_id = await currentUserId();
-      const { error } = await supabase.from(table).insert({ ...values, user_id });
+      const { error } = await client.insert({ ...values, user_id });
       if (error) throw error;
     },
     onSuccess: () => {
