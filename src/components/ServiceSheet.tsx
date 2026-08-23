@@ -53,8 +53,14 @@ export function ServiceSheet({
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     const amount = parseAmount(form.amount);
-    if (!form.client_name.trim()) return toast.error("Informe o nome do cliente");
-    if (amount <= 0) return toast.error("Informe o valor do serviço");
+    if (!form.client_name.trim()) {
+      toast.error("Informe o nome do cliente");
+      return;
+    }
+    if (amount <= 0) {
+      toast.error("Informe o valor do serviço");
+      return;
+    }
     try {
       await save.mutateAsync({
         id: editing?.id,

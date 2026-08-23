@@ -123,7 +123,7 @@ export function useSaveRow<T extends Record<string, unknown>>(
 ) {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: async ({ id, values }: { id?: string; values: T }) => {
+    mutationFn: async ({ id, values }: { id?: string | undefined; values: T }) => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const client = supabase.from(table) as any;
       if (id) {

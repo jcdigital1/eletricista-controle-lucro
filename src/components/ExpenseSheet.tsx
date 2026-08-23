@@ -49,7 +49,10 @@ export function ExpenseSheet({
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     const amount = parseAmount(form.amount);
-    if (amount <= 0) return toast.error("Informe o valor do gasto");
+    if (amount <= 0) {
+      toast.error("Informe o valor do gasto");
+      return;
+    }
     try {
       await save.mutateAsync({ id: editing?.id, values: { ...form, amount } });
       toast.success(editing?.id ? "Gasto atualizado" : "Gasto salvo!");
