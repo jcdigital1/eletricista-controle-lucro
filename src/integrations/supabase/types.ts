@@ -14,7 +14,162 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      clients: {
+        Row: {
+          address: string
+          created_at: string
+          id: string
+          name: string
+          notes: string
+          phone: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          address?: string
+          created_at?: string
+          id?: string
+          name: string
+          notes?: string
+          phone?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          address?: string
+          created_at?: string
+          id?: string
+          name?: string
+          notes?: string
+          phone?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      expenses: {
+        Row: {
+          amount: number
+          category: string
+          created_at: string
+          description: string
+          expense_date: string
+          id: string
+          notes: string
+          payment_method: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          amount?: number
+          category?: string
+          created_at?: string
+          description?: string
+          expense_date?: string
+          id?: string
+          notes?: string
+          payment_method?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          category?: string
+          created_at?: string
+          description?: string
+          expense_date?: string
+          id?: string
+          notes?: string
+          payment_method?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          address: string
+          city: string
+          company_name: string
+          created_at: string
+          full_name: string
+          id: string
+          monthly_goal: number
+          phone: string
+          updated_at: string
+          whatsapp: string
+        }
+        Insert: {
+          address?: string
+          city?: string
+          company_name?: string
+          created_at?: string
+          full_name?: string
+          id: string
+          monthly_goal?: number
+          phone?: string
+          updated_at?: string
+          whatsapp?: string
+        }
+        Update: {
+          address?: string
+          city?: string
+          company_name?: string
+          created_at?: string
+          full_name?: string
+          id?: string
+          monthly_goal?: number
+          phone?: string
+          updated_at?: string
+          whatsapp?: string
+        }
+        Relationships: []
+      }
+      services: {
+        Row: {
+          amount: number
+          category: string
+          client_name: string
+          client_phone: string
+          created_at: string
+          description: string
+          id: string
+          notes: string
+          payment_method: string
+          service_date: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          amount?: number
+          category?: string
+          client_name?: string
+          client_phone?: string
+          created_at?: string
+          description?: string
+          id?: string
+          notes?: string
+          payment_method?: string
+          service_date?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          category?: string
+          client_name?: string
+          client_phone?: string
+          created_at?: string
+          description?: string
+          id?: string
+          notes?: string
+          payment_method?: string
+          service_date?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
